@@ -56,7 +56,7 @@ export default function RGBExplodedView({
                       padding: isCompact ? '0.2rem 0.1rem' : '0.5rem 0.25rem',
                       display: 'flex',
                       alignItems: 'center',
-                      justify: 'center'
+                      justifyContent: 'center'
                     }}
                   >
                     <input
@@ -102,54 +102,34 @@ export default function RGBExplodedView({
           <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)', fontWeight: 500 }}>Click cell to edit value</span>
         </div>
 
-        <div className="preset-buttons" style={{ marginBottom: '1.1rem' }}>
+        <div className="channel-tab-bar" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.45rem', marginBottom: '1.2rem', width: '100%' }}>
           <button 
-            className={`preset-btn ${activeTab === 'r' ? 'active' : ''}`} 
-            style={{ 
-              borderColor: activeTab === 'r' ? '#FB7185' : undefined, 
-              color: activeTab === 'r' ? '#FB7185' : undefined,
-              background: activeTab === 'r' ? 'rgba(251, 113, 133, 0.15)' : undefined 
-            }}
+            className={`channel-tab-btn ${activeTab === 'r' ? 'active-r' : ''}`} 
             onClick={() => handleTabClick('r')}
           >
-            <CircleDot size={15} color="#FB7185" />
+            <CircleDot size={15} />
             <span>Red (R)</span>
           </button>
           <button 
-            className={`preset-btn ${activeTab === 'g' ? 'active' : ''}`} 
-            style={{ 
-              borderColor: activeTab === 'g' ? '#34D399' : undefined, 
-              color: activeTab === 'g' ? '#34D399' : undefined,
-              background: activeTab === 'g' ? 'rgba(52, 211, 153, 0.15)' : undefined 
-            }}
+            className={`channel-tab-btn ${activeTab === 'g' ? 'active-g' : ''}`} 
             onClick={() => handleTabClick('g')}
           >
-            <CircleDot size={15} color="#34D399" />
+            <CircleDot size={15} />
             <span>Green (G)</span>
           </button>
           <button 
-            className={`preset-btn ${activeTab === 'b' ? 'active' : ''}`} 
-            style={{ 
-              borderColor: activeTab === 'b' ? '#38BDF8' : undefined, 
-              color: activeTab === 'b' ? '#38BDF8' : undefined,
-              background: activeTab === 'b' ? 'rgba(56, 189, 248, 0.15)' : undefined 
-            }}
+            className={`channel-tab-btn ${activeTab === 'b' ? 'active-b' : ''}`} 
             onClick={() => handleTabClick('b')}
           >
-            <CircleDot size={15} color="#38BDF8" />
+            <CircleDot size={15} />
             <span>Blue (B)</span>
           </button>
           <button 
-            className={`preset-btn ${activeTab === 'all' ? 'active' : ''}`} 
-            style={{
-              borderColor: activeTab === 'all' ? 'var(--accent-purple)' : undefined,
-              color: activeTab === 'all' ? 'var(--accent-purple)' : undefined,
-              background: activeTab === 'all' ? 'rgba(6, 182, 212, 0.15)' : undefined
-            }}
+            className={`channel-tab-btn ${activeTab === 'all' ? 'active-all' : ''}`} 
             onClick={() => handleTabClick('all')}
           >
-            <Layers size={15} color={activeTab === 'all' ? 'var(--accent-purple)' : '#64748B'} />
-            <span>All 3 Matrices</span>
+            <Layers size={15} />
+            <span>All 3</span>
           </button>
         </div>
 
