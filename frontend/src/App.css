@@ -148,12 +148,12 @@
 }
 
 [data-theme="light"] .track-slider-container {
-  background: #E9EFE3;
-  border-color: rgba(56, 74, 49, 0.15);
+  background: #E8EFE2;
+  border-color: rgba(92, 114, 73, 0.18);
 }
 
 [data-theme="light"] .track-slider-text {
-  color: #526647;
+  color: #586B4B;
 }
 
 [data-theme="light"] .track-slider-option.active .track-slider-text {
@@ -161,8 +161,8 @@
 }
 
 [data-theme="light"] .track-slider-active-pill {
-  background: linear-gradient(135deg, #384A31 0%, #263421 100%);
-  box-shadow: 0 4px 14px rgba(56, 74, 49, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, #5C7249 0%, #465935 100%);
+  box-shadow: 0 4px 14px rgba(92, 114, 73, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
 .level-selector-btn:hover {
@@ -337,17 +337,17 @@
 }
 
 [data-theme="light"] .step-num-pill {
-  color: #384A31;
+  color: #5C7249;
 }
 
 [data-theme="light"] .step-icon-badge {
-  background: rgba(56, 74, 49, 0.12);
-  color: #384A31;
+  background: rgba(92, 114, 73, 0.14);
+  color: #5C7249;
 }
 
 [data-theme="light"] .step-tab-active-bg {
-  background: linear-gradient(135deg, #384A31 0%, #263421 100%);
-  box-shadow: 0 4px 16px rgba(56, 74, 49, 0.35);
+  background: linear-gradient(135deg, #5C7249 0%, #465935 100%);
+  box-shadow: 0 4px 16px rgba(92, 114, 73, 0.32);
 }
 
 [data-theme="light"] .step-tab.active .step-tab-title {
@@ -1367,12 +1367,12 @@
   transform: translateY(-1px);
 }
 
-/* Light Mode Preset Active Button: Rich Dark Olive (#384A31) */
+/* Light Mode Preset Active Button: Smooth Medium Olive (#5C7249) */
 [data-theme="light"] .preset-btn.active {
-  background: linear-gradient(135deg, #384A31 0%, #263421 100%);
-  border-color: #384A31;
+  background: linear-gradient(135deg, #5C7249 0%, #465935 100%);
+  border-color: #5C7249;
   color: #FFFFFF !important;
   font-weight: 700;
-  box-shadow: 0 4px 14px rgba(56, 74, 49, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 14px rgba(92, 114, 73, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.25);
   transform: translateY(-1px);
 }

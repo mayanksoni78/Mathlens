@@ -44,35 +44,35 @@
 }
 
 [data-theme="light"] {
-  /* LIGHT MODE: Rich Dark Olive Green Theme from User Spec (#384A31 / #33452B) */
-  --bg-primary: #F5F7F2;   /* Soft Light Base */
-  --bg-secondary: #E9EFE3; /* Light Olive Secondary */
-  --bg-card: #FFFFFF;      /* Clean White Card */
-  --bg-card-hover: #EDF2E8;/* Light Olive Hover */
-  --bg-elevated: #E4ECD9;  /* Elevated Container */
+  /* LIGHT MODE: Smooth, Refined Olive Green Theme (#5C7249 / #50663D) */
+  --bg-primary: #F3F6F0;   /* Soft Pale Olive Cream Alabaster Base */
+  --bg-secondary: #E8EFE2; /* Soft Olive Secondary */
+  --bg-card: rgba(255, 255, 255, 0.92); /* Frosted White Card */
+  --bg-card-hover: #EDF3E7;/* Soft Olive Hover */
+  --bg-elevated: #E3ECD9;  /* Elevated Container */
   
-  --text-primary: #1C2617;  /* Deep Dark Olive Charcoal Text */
-  --text-secondary: #35442E;/* Deep Olive Secondary Text */
-  --text-muted: #526647;    /* Muted Olive Text */
+  --text-primary: #1C2617;  /* Deep Olive Charcoal Text */
+  --text-secondary: #33442A;/* Medium Olive Secondary Text */
+  --text-muted: #586B4B;    /* Muted Sage Text */
   
-  /* Primary & Accent Map for Light Theme (Rich Dark Olive System) */
-  --accent-purple: #384A31; /* User Spec Dark Olive Accent */
-  --accent-teal: #384A31;
-  --accent-violet: #455A3B;
-  --accent-blue: #384A31;
-  --accent-cobalt: #293823;
-  --accent-periwinkle: #455A3B;
-  --accent-cyan: #384A31;
-  --accent-emerald: #384A31;
+  /* Primary & Accent Map for Light Theme (Smooth Olive System) */
+  --accent-purple: #5C7249; /* Primary Smooth Olive Accent */
+  --accent-teal: #5C7249;
+  --accent-violet: #687E54;
+  --accent-blue: #50663D;
+  --accent-cobalt: #425531;
+  --accent-periwinkle: #687E54;
+  --accent-cyan: #5C7249;
+  --accent-emerald: #5C7249;
   --accent-mint: #7E8B52;
-  --accent-green: #384A31;
+  --accent-green: #5C7249;
   --accent-rose: #D9485C;
-  --accent-gold: #526647;
+  --accent-gold: #687E54;
   
-  --border-color: rgba(56, 74, 49, 0.16);
-  --border-hover: rgba(56, 74, 49, 0.45);
-  --border-violet: rgba(69, 90, 59, 0.4);
-  --border-cyan: rgba(56, 74, 49, 0.35);
+  --border-color: rgba(92, 114, 73, 0.18);
+  --border-hover: rgba(92, 114, 73, 0.45);
+  --border-violet: rgba(104, 126, 84, 0.4);
+  --border-cyan: rgba(92, 114, 73, 0.35);
 
   color-scheme: light;
 }
@@ -126,19 +126,24 @@ body::after {
   background: radial-gradient(circle, #0D9488 0%, #0284C7 75%, transparent 100%);
 }
 
-/* Light Mode Orbs: Deep Olive Tint */
+/* Light Mode Textured Olive Background */
 [data-theme="light"] body {
-  background-color: #F5F7F2;
+  background-color: #F3F6F0;
+  background-image: 
+    radial-gradient(circle at 12% 18%, rgba(207, 225, 185, 0.55) 0%, transparent 45%),
+    radial-gradient(circle at 88% 82%, rgba(231, 245, 220, 0.7) 0%, transparent 50%),
+    radial-gradient(rgba(92, 114, 73, 0.09) 1.5px, transparent 1.5px);
+  background-size: 100% 100%, 100% 100%, 26px 26px;
   color: var(--text-secondary);
 }
 
 [data-theme="light"] body::before {
-  opacity: 0.25;
+  opacity: 0.3;
   background: radial-gradient(circle, #CFE1B9 0%, #B6C99B 75%, transparent 100%);
 }
 
 [data-theme="light"] body::after {
-  opacity: 0.22;
+  opacity: 0.28;
   background: radial-gradient(circle, #E7F5DC 0%, #CFE1B9 75%, transparent 100%);
 }
 
