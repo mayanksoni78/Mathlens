@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ChevronDown, Sun, Moon, Sparkles } from 'lucide-react';
+import { Sun, Moon, Sparkles } from 'lucide-react';
 
 export default function Header({ currentLevel, onSelectLevel, onOpenLevelModal, theme, onToggleTheme }) {
   return (
@@ -8,7 +8,7 @@ export default function Header({ currentLevel, onSelectLevel, onOpenLevelModal, 
       <div className="brand-section">
         <div>
           <h1 className="brand-title">MathLens</h1>
-          <div className="brand-subtitle">Interactive Matrix Laboratory</div>
+          <div className="brand-subtitle">Visual & Interactive Linear Algebra</div>
         </div>
       </div>
       
@@ -36,7 +36,7 @@ export default function Header({ currentLevel, onSelectLevel, onOpenLevelModal, 
             onClick={() => {
               if (onOpenLevelModal) onOpenLevelModal();
             }}
-            title="Advanced Linear Algebra (Coming Soon)"
+            title="Advanced Linear Algebra"
           >
             {currentLevel === 'advanced' && (
               <motion.div
@@ -45,7 +45,9 @@ export default function Header({ currentLevel, onSelectLevel, onOpenLevelModal, 
                 transition={{ type: 'spring', stiffness: 450, damping: 35 }}
               />
             )}
-            <span className="track-slider-text">Advanced Linear Algebra</span>
+            <span className="track-slider-text flex items-center gap-1">
+              <Sparkles size={12} className="inline opacity-80" /> Advanced Math
+            </span>
           </button>
         </div>
 

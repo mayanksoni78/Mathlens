@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Square, CheckSquare, Grid, TrendingUp } from 'lucide-react';
 import PixelCanvas from '../components/visualizers/PixelCanvas';
 import MatrixGrid from '../components/matrix/MatrixGrid';
 
@@ -54,35 +55,39 @@ export default function Step1Grayscale() {
         </p>
       </div>
 
-      <div className="top-control-card" style={{ padding: '1rem 1.5rem' }}>
+      <div className="top-control-card">
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
           <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
             Select Matrix Preset:
           </span>
-          <div className="preset-buttons" style={{ margin: 0 }}>
+          <div className="preset-buttons">
             <button 
               className={`preset-btn ${activePreset === 'black' ? 'active' : ''}`} 
               onClick={() => handleSelectPreset('black')}
             >
-              ⬛ Black (All 0s)
+              <Square size={16} fill="currentColor" opacity={0.7} />
+              <span>Black (All 0s)</span>
             </button>
             <button 
               className={`preset-btn ${activePreset === 'white' ? 'active' : ''}`} 
               onClick={() => handleSelectPreset('white')}
             >
-              ⬜ White (All 255s)
+              <CheckSquare size={16} />
+              <span>White (All 255s)</span>
             </button>
             <button 
               className={`preset-btn ${activePreset === 'checkerboard' ? 'active' : ''}`} 
               onClick={() => handleSelectPreset('checkerboard')}
             >
-              🏁 Checkerboard
+              <Grid size={16} />
+              <span>Checkerboard</span>
             </button>
             <button 
               className={`preset-btn ${activePreset === 'gradient' ? 'active' : ''}`} 
               onClick={() => handleSelectPreset('gradient')}
             >
-              📈 Gradient
+              <TrendingUp size={16} />
+              <span>Gradient</span>
             </button>
           </div>
         </div>
@@ -99,40 +104,9 @@ export default function Step1Grayscale() {
           matrix={matrix}
           hoveredCell={hoveredCell}
           onHoverCell={setHoveredCell}
-          title="Corresponding Matrix View A"
+          title="Mathematical Matrix View A"
         />
       </div>
-
-      {/* FLOATING CURSOR TOOLTIP AT CURSOR POSITION */}
-      {hoveredCell && hoveredCell.x !== undefined && (
-        <div 
-          className="cursor-tooltip"
-          style={{
-            position: 'fixed',
-            left: `${hoveredCell.x + 14}px`,
-            top: `${hoveredCell.y + 14}px`,
-            pointerEvents: 'none',
-            zIndex: 9999,
-            background: 'rgba(15, 23, 42, 0.94)',
-            border: '1px solid rgba(255, 255, 255, 0.2)',
-            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.45)',
-            backdropFilter: 'blur(8px)',
-            borderRadius: '20px',
-            padding: '0.35rem 0.85rem',
-            fontSize: '0.85rem',
-            fontFamily: 'var(--font-mono)',
-            color: '#FFFFFF',
-            whiteSpace: 'nowrap',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem'
-          }}
-        >
-          <span style={{ color: '#94A3B8', fontWeight: 600 }}>({hoveredCell.row + 1}, {hoveredCell.col + 1})</span>
-          <span style={{ opacity: 0.3, color: '#94A3B8' }}>|</span>
-          <span>Val: <strong style={{ color: '#38BDF8', fontWeight: 700 }}>{matrix[hoveredCell.row][hoveredCell.col]}</strong></span>
-        </div>
-      )}
     </motion.div>
   );
 }
