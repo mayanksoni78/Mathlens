@@ -1,31 +1,40 @@
 :root {
-  --bg-primary: #0B0F17;
-  --bg-secondary: #121824;
-  --bg-card: #182234;
-  --bg-card-hover: #1E2B42;
-  --bg-elevated: #24344E;
+  /* Curated Olive Green Palette System from User Spec */
+  --olive-1: #E7F5DC;
+  --olive-2: #CFE1B9;
+  --olive-3: #B6C99B;
+  --olive-4: #98A77C;
+  --olive-5: #88976C;
+  --olive-6: #728156;
+
+  /* Dark Theme Palette (Default) */
+  --bg-primary: #0E140C;   /* Deep Dark Olive Black Base */
+  --bg-secondary: #151D12; /* Dark Olive Secondary */
+  --bg-card: #1D2819;      /* Dark Olive Card Background */
+  --bg-card-hover: #253320;/* Dark Olive Hover State */
+  --bg-elevated: #2E3E28;  /* Elevated Olive Container */
   
-  --text-primary: #F8FAFC;
-  --text-secondary: #CBD5E1;
-  --text-muted: #64748B;
+  --text-primary: #F4F8F0;  /* Off-white with warm olive tint */
+  --text-secondary: #D2DEC6;/* Soft Sage Light Text */
+  --text-muted: #88976C;    /* Shade 5 Muted Olive Text */
   
-  /* Modern Blue-Green & Champagne Amber System (No Purple) */
-  --accent-purple: #06B6D4; /* Electric Blue-Green Cyan */
-  --accent-violet: #0D9488; /* Deep Blue-Green Teal */
-  --accent-blue: #0284C7;   /* Sky Blue */
-  --accent-cobalt: #0891B2;
-  --accent-periwinkle: #22D3EE;
-  --accent-cyan: #06B6D4;
-  --accent-emerald: #10B981;
-  --accent-mint: #34D399;
-  --accent-green: #10B981;
-  --accent-rose: #F43F5E;
-  --accent-gold: #F59E0B;  /* Warm Champagne Amber */
+  /* Primary & Accent Map for Dark Theme */
+  --accent-purple: #B6C99B; /* Shade 3: Primary Bright Olive Accent */
+  --accent-violet: #98A77C; /* Shade 4: Sage Accent */
+  --accent-blue: #88976C;   /* Shade 5: Deep Olive Accent */
+  --accent-cobalt: #728156; /* Shade 6: Dark Olive */
+  --accent-periwinkle: #CFE1B9;/* Shade 2: Light Olive */
+  --accent-cyan: #B6C99B;   /* Shade 3 */
+  --accent-emerald: #98A77C;/* Shade 4 */
+  --accent-mint: #E7F5DC;   /* Shade 1 */
+  --accent-green: #88976C;  /* Shade 5 */
+  --accent-rose: #E06C75;   /* Soft Rose Accent */
+  --accent-gold: #CFE1B9;   /* Warm Soft Olive Gold */
   
-  --border-color: rgba(255, 255, 255, 0.09);
-  --border-hover: rgba(6, 182, 212, 0.45);
-  --border-violet: rgba(13, 148, 136, 0.4);
-  --border-cyan: rgba(6, 182, 212, 0.35);
+  --border-color: rgba(182, 201, 155, 0.16);
+  --border-hover: rgba(182, 201, 155, 0.45);
+  --border-violet: rgba(152, 167, 124, 0.4);
+  --border-cyan: rgba(182, 201, 155, 0.35);
 
   --font-serif: 'Lora', 'Newsreader', Georgia, serif;
   --font-display: 'Lora', 'Newsreader', Georgia, serif;
@@ -43,33 +52,35 @@
 }
 
 [data-theme="light"] {
-  --bg-primary: #FAF8F5; /* Warm Cream Alabaster */
-  --bg-secondary: #F1F5F9;
-  --bg-card: #FFFFFF;
-  --bg-card-hover: #FAF8F5;
-  --bg-elevated: #FFFFFF;
+  /* Light Theme Palette */
+  --bg-primary: #F6F9F3;   /* Soft Cream Olive Light Base */
+  --bg-secondary: #E7F5DC; /* Shade 1: Pale Olive Secondary */
+  --bg-card: #FFFFFF;      /* Clean White Card */
+  --bg-card-hover: #EFF7E8;/* Light Olive Hover */
+  --bg-elevated: #E7F5DC;  /* Shade 1 */
   
-  --text-primary: #0F172A;
-  --text-secondary: #334155;
-  --text-muted: #64748B;
+  --text-primary: #1F2718;  /* Deep Olive Charcoal Text */
+  --text-secondary: #3B4730;/* Medium Olive Text */
+  --text-muted: #728156;    /* Shade 6 Muted Text */
   
-  --accent-purple: #3F6212; /* Deep Dark Olive Green for Light Theme */
-  --accent-teal: #3F6212;
-  --accent-violet: #4D7C0F;
-  --accent-blue: #0284C7;
-  --accent-cobalt: #3F6212;
-  --accent-periwinkle: #3F6212;
-  --accent-cyan: #4D7C0F;
-  --accent-emerald: #15803D;
-  --accent-mint: #3F6212;
-  --accent-green: #15803D;
-  --accent-rose: #E11D48;
-  --accent-gold: #D97706;  /* Warm Gold */
+  /* Primary & Accent Map for Light Theme */
+  --accent-purple: #728156; /* Shade 6: Dark Olive Accent */
+  --accent-teal: #728156;
+  --accent-violet: #88976C; /* Shade 5 */
+  --accent-blue: #98A77C;   /* Shade 4 */
+  --accent-cobalt: #728156;
+  --accent-periwinkle: #88976C;
+  --accent-cyan: #88976C;
+  --accent-emerald: #728156;
+  --accent-mint: #B6C99B;   /* Shade 3 */
+  --accent-green: #728156;
+  --accent-rose: #D9485C;
+  --accent-gold: #88976C;
   
-  --border-color: rgba(0, 0, 0, 0.09);
-  --border-hover: rgba(63, 98, 18, 0.35);
-  --border-violet: rgba(63, 98, 18, 0.3);
-  --border-cyan: rgba(77, 124, 15, 0.3);
+  --border-color: rgba(114, 129, 86, 0.18);
+  --border-hover: rgba(114, 129, 86, 0.45);
+  --border-violet: rgba(136, 151, 108, 0.4);
+  --border-cyan: rgba(152, 167, 124, 0.35);
 
   color-scheme: light;
 }
@@ -81,7 +92,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #0B0F17;
+  background-color: var(--bg-primary);
   color: var(--text-secondary);
   min-height: 100vh;
   overflow-x: hidden;
@@ -98,7 +109,7 @@ body::after {
   pointer-events: none;
   z-index: 0;
   filter: blur(100px);
-  opacity: 0.16;
+  opacity: 0.22;
   transition: all 0.5s ease;
 }
 
@@ -109,7 +120,7 @@ body::before {
   max-height: 600px;
   top: -120px;
   left: -120px;
-  background: radial-gradient(circle, #06B6D4 0%, #0D9488 75%, transparent 100%);
+  background: radial-gradient(circle, #728156 0%, #88976C 75%, transparent 100%);
 }
 
 body::after {
@@ -119,22 +130,22 @@ body::after {
   max-height: 700px;
   bottom: -160px;
   right: -160px;
-  background: radial-gradient(circle, #0D9488 0%, #0284C7 75%, transparent 100%);
+  background: radial-gradient(circle, #88976C 0%, #B6C99B 75%, transparent 100%);
 }
 
 [data-theme="light"] body {
-  background-color: #FAF8F5; /* Warm Cream Alabaster Base */
+  background-color: #F6F9F3;
   color: var(--text-secondary);
 }
 
 [data-theme="light"] body::before {
-  opacity: 0.15;
-  background: radial-gradient(circle, #3F6212 0%, #4D7C0F 75%, transparent 100%);
+  opacity: 0.3;
+  background: radial-gradient(circle, #CFE1B9 0%, #B6C99B 75%, transparent 100%);
 }
 
 [data-theme="light"] body::after {
-  opacity: 0.12;
-  background: radial-gradient(circle, #D97706 0%, #3F6212 75%, transparent 100%);
+  opacity: 0.25;
+  background: radial-gradient(circle, #E7F5DC 0%, #CFE1B9 75%, transparent 100%);
 }
 
 #root {
@@ -202,7 +213,7 @@ code, pre, .font-mono {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(6, 182, 212, 0.25);
+  background: rgba(182, 201, 155, 0.35);
   border-radius: 4px;
 }
 
@@ -226,29 +237,29 @@ code, pre, .font-mono {
 .bg-math-grid {
   background-size: 32px 32px;
   background-image: 
-    linear-gradient(to right, rgba(99, 102, 241, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(136, 151, 108, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(136, 151, 108, 0.08) 1px, transparent 1px);
 }
 
 .dark .bg-math-grid {
   background-size: 32px 32px;
   background-image: 
-    linear-gradient(to right, rgba(99, 102, 241, 0.1) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(99, 102, 241, 0.1) 1px, transparent 1px);
+    linear-gradient(to right, rgba(182, 201, 155, 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(182, 201, 155, 0.12) 1px, transparent 1px);
 }
 
 /* Glow gradient effects */
 .glow-indigo {
-  box-shadow: 0 0 50px -10px rgba(99, 102, 241, 0.25);
+  box-shadow: 0 0 50px -10px rgba(182, 201, 155, 0.25);
 }
 
 .glow-violet {
-  box-shadow: 0 0 60px -15px rgba(139, 92, 246, 0.25);
+  box-shadow: 0 0 60px -15px rgba(136, 151, 108, 0.25);
 }
 
 /* Custom Slider Styles */
 input[type="range"] {
-  accent-color: #6366f1;
+  accent-color: #88976C;
 }
 
 /* Glassmorphism helpers */
@@ -260,10 +271,10 @@ input[type="range"] {
 }
 
 .dark .glass-panel {
-  background: rgba(17, 24, 39, 0.75);
+  background: rgba(20, 28, 17, 0.75);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(182, 201, 155, 0.12);
 }
 
 /* Custom subtle animation */
