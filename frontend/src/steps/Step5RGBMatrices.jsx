@@ -3,28 +3,43 @@ import { motion } from 'framer-motion';
 import RGBExplodedView from '../components/visualizers/RGBExplodedView';
 import PixelCanvas from '../components/visualizers/PixelCanvas';
 
-const SAMPLE_COLOR_GRID = [
-  [{ r: 255, g: 0, b: 0 }, { r: 0, g: 255, b: 0 }, { r: 0, g: 0, b: 255 }, { r: 128, g: 0, b: 128 }],
-  [{ r: 255, g: 255, b: 0 }, { r: 0, g: 255, b: 255 }, { r: 255, g: 0, b: 255 }, { r: 128, g: 128, b: 128 }],
-  [{ r: 200, g: 50, b: 50 }, { r: 50, g: 200, b: 50 }, { r: 50, g: 50, b: 200 }, { r: 255, g: 255, b: 255 }],
-  [{ r: 0, g: 0, b: 0 }, { r: 100, g: 100, b: 100 }, { r: 180, g: 90, b: 40 }, { r: 90, g: 180, b: 240 }]
+// 16 Unique values for R, G, and B channels so every cell has a distinct shade
+const INITIAL_COLOR_GRID = [
+  [{ r: 255, g: 250, b: 245 }, { r: 240, g: 235, b: 230 }, { r: 225, g: 220, b: 215 }, { r: 210, g: 205, b: 200 }],
+  [{ r: 195, g: 190, b: 185 }, { r: 180, g: 175, b: 170 }, { r: 165, g: 160, b: 155 }, { r: 150, g: 145, b: 140 }],
+  [{ r: 135, g: 130, b: 125 }, { r: 120, g: 115, b: 110 }, { r: 105, g: 100, b: 95 }, { r: 90, g: 85, b: 80 }],
+  [{ r: 75, g: 70, b: 65 }, { r: 60, g: 55, b: 50 }, { r: 45, g: 40, b: 35 }, { r: 30, g: 25, b: 20 }]
 ];
 
 export default function Step5RGBMatrices() {
+  const [colorGrid, setColorGrid] = useState(INITIAL_COLOR_GRID);
   const [activeTab, setActiveTab] = useState('r');
   const [hoveredCell, setHoveredCell] = useState(null);
 
+  const handleCellChange = ({ row, col, channel, value }) => {
+    setColorGrid(prevGrid => {
+      return prevGrid.map((rArr, i) =>
+        rArr.map((cell, j) => {
+          if (i === row && j === col) {
+            return { ...cell, [channel]: value };
+          }
+          return cell;
+        })
+      );
+    });
+  };
+
   const getFilteredColorGrid = () => {
     if (activeTab === 'r') {
-      return SAMPLE_COLOR_GRID.map(row => row.map(p => ({ r: p.r, g: 0, b: 0 })));
+      return colorGrid.map(row => row.map(p => ({ r: p.r, g: 0, b: 0 })));
     }
     if (activeTab === 'g') {
-      return SAMPLE_COLOR_GRID.map(row => row.map(p => ({ r: 0, g: p.g, b: 0 })));
+      return colorGrid.map(row => row.map(p => ({ r: 0, g: p.g, b: 0 })));
     }
     if (activeTab === 'b') {
-      return SAMPLE_COLOR_GRID.map(row => row.map(p => ({ r: 0, g: 0, b: p.b })));
+      return colorGrid.map(row => row.map(p => ({ r: 0, g: 0, b: p.b })));
     }
-    return SAMPLE_COLOR_GRID;
+    return colorGrid;
   };
 
   const getCanvasTitle = () => {
@@ -44,7 +59,7 @@ export default function Step5RGBMatrices() {
       <div className="step-header-box">
         <h2 className="step-heading">RGB Channel Matrix Decomposition</h2>
         <p className="step-description">
-          A full colour image is represented as a triple tensor <strong>(R, G, B)</strong> using three separate 2D matrices: <code>R_matrix</code>, <code>G_matrix</code>, and <code>B_matrix</code>.
+          A full colour image is represented as a triple tensor <strong>(R, G, B)</strong> using three separate 2D matrices: <code>R_matrix</code>, <code>G_matrix</code>, and <code>B_matrix</code>. Click any matrix element to change its intensity value (0 to 255) live!
         </p>
       </div>
 
@@ -57,11 +72,12 @@ export default function Step5RGBMatrices() {
           title={getCanvasTitle()}
         />
         <RGBExplodedView
-          colorGrid={SAMPLE_COLOR_GRID}
+          colorGrid={colorGrid}
           activeTab={activeTab}
           onSelectTab={setActiveTab}
           hoveredCell={hoveredCell}
           onHoverCell={setHoveredCell}
+          onChangeCell={handleCellChange}
         />
       </div>
     </motion.div>

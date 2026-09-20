@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Layers, CircleDot, Eye } from 'lucide-react';
+import { Layers, CircleDot } from 'lucide-react';
 
 export default function RGBExplodedView({
   colorGrid,
@@ -8,7 +8,8 @@ export default function RGBExplodedView({
   onSelectTab,
   hoveredCell,
   onHoverCell,
-  onClickCell
+  onClickCell,
+  onChangeCell
 }) {
   if (!colorGrid) return null;
 
@@ -45,21 +46,44 @@ export default function RGBExplodedView({
                   <motion.div
                     key={`${channelKey}-${i}-${j}`}
                     className={`matrix-cell ${isSelected ? 'hovered' : ''}`}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => onClickCell && onClickCell({ row: i, col: j })}
+                    whileHover={{ scale: 1.04 }}
+                    whileTap={{ scale: 0.96 }}
                     onMouseEnter={() => onHoverCell && onHoverCell({ row: i, col: j })}
                     style={{
                       '--cell-accent': color,
                       borderColor: isSelected ? color : undefined,
                       borderRadius: isCompact ? '6px' : '10px',
-                      padding: isCompact ? '0.45rem 0.2rem' : '0.85rem 0.5rem',
-                      fontSize: isCompact ? '1.05rem' : '1.35rem'
+                      padding: isCompact ? '0.2rem 0.1rem' : '0.5rem 0.25rem',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justify: 'center'
                     }}
                   >
-                    <span className="matrix-cell-val" style={{ color: isSelected ? undefined : color }}>
-                      {val}
-                    </span>
+                    <input
+                      type="number"
+                      min="0"
+                      max="255"
+                      value={val}
+                      onChange={(e) => {
+                        const raw = parseInt(e.target.value, 10);
+                        const v = isNaN(raw) ? 0 : Math.min(255, Math.max(0, raw));
+                        if (onChangeCell) onChangeCell({ row: i, col: j, channel: channelKey, value: v });
+                      }}
+                      className="matrix-cell-input"
+                      title="Click to edit intensity (0-255)"
+                      style={{
+                        width: '100%',
+                        textAlign: 'center',
+                        background: 'transparent',
+                        border: 'none',
+                        outline: 'none',
+                        color: color,
+                        fontWeight: 700,
+                        fontSize: isCompact ? '0.95rem' : '1.25rem',
+                        fontFamily: 'var(--font-mono)',
+                        cursor: 'pointer'
+                      }}
+                    />
                   </motion.div>
                 );
               })
@@ -75,7 +99,7 @@ export default function RGBExplodedView({
       <div style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%' }}>
         <div className="card-title" style={{ marginBottom: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <span>Channel Decomposition</span>
-          <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)', fontWeight: 500 }}>Hover cell to link image</span>
+          <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)', fontWeight: 500 }}>Click cell to edit value</span>
         </div>
 
         <div className="preset-buttons" style={{ marginBottom: '1.1rem' }}>

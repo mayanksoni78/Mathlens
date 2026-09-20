@@ -142,8 +142,8 @@
   position: absolute;
   inset: 0;
   border-radius: 9999px;
-  background: linear-gradient(135deg, #14B8A6 0%, #0D9488 100%);
-  box-shadow: 0 4px 16px rgba(20, 184, 166, 0.45);
+  background: linear-gradient(135deg, #7E8B52 0%, #677341 100%);
+  box-shadow: 0 4px 14px rgba(103, 115, 65, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.25);
   z-index: 1;
 }
 
@@ -161,8 +161,8 @@
 }
 
 [data-theme="light"] .track-slider-active-pill {
-  background: linear-gradient(135deg, #3F6212 0%, #4D7C0F 100%);
-  box-shadow: 0 4px 14px rgba(63, 98, 18, 0.35);
+  background: linear-gradient(135deg, #7E8B52 0%, #677341 100%);
+  box-shadow: 0 4px 14px rgba(103, 115, 65, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
 .level-selector-btn:hover {
@@ -266,8 +266,8 @@
   position: absolute;
   inset: 0;
   border-radius: 9999px;
-  background: linear-gradient(135deg, #14B8A6 0%, #0D9488 100%);
-  box-shadow: 0 4px 18px rgba(20, 184, 166, 0.45);
+  background: linear-gradient(135deg, #7E8B52 0%, #677341 100%);
+  box-shadow: 0 4px 16px rgba(103, 115, 65, 0.4);
   z-index: 1;
 }
 
@@ -277,7 +277,7 @@
   font-family: var(--font-mono);
   font-size: 0.68rem;
   font-weight: 800;
-  color: #5EEAD4;
+  color: var(--olive-3);
   opacity: 0.9;
   transition: color 0.2s ease;
 }
@@ -291,8 +291,8 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: rgba(20, 184, 166, 0.2);
-  color: #5EEAD4;
+  background: rgba(126, 139, 82, 0.2);
+  color: var(--olive-3);
   transition: all 0.2s ease;
 }
 
@@ -305,7 +305,7 @@
 }
 
 .step-tab:hover {
-  border-color: rgba(20, 184, 166, 0.5);
+  border-color: rgba(126, 139, 82, 0.5);
   background: var(--bg-card-hover);
   transform: translateY(-1px);
 }
@@ -337,17 +337,17 @@
 }
 
 [data-theme="light"] .step-num-pill {
-  color: #3F6212;
+  color: #677341;
 }
 
 [data-theme="light"] .step-icon-badge {
-  background: rgba(63, 98, 18, 0.12);
-  color: #3F6212;
+  background: rgba(103, 115, 65, 0.12);
+  color: #677341;
 }
 
 [data-theme="light"] .step-tab-active-bg {
-  background: linear-gradient(135deg, #3F6212 0%, #4D7C0F 100%);
-  box-shadow: 0 4px 16px rgba(63, 98, 18, 0.35);
+  background: linear-gradient(135deg, #7E8B52 0%, #677341 100%);
+  box-shadow: 0 4px 16px rgba(103, 115, 65, 0.35);
 }
 
 [data-theme="light"] .step-tab.active .step-tab-title {
