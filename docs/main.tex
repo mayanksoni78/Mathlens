@@ -30,21 +30,21 @@
     
     \rule{\linewidth}{0.4mm}\\[0.4cm]
     
-    \begin{minipage}{0.48\textwidth}
-        \begin{left} \small
-            \textbf{Team Members:}\\
-            Mayank Soni\\
-            Naman Kumar\\
-            Krishana Yadav
-        \end{left}
-    \end{minipage}
-    \begin{minipage}{0.48\textwidth}
-        \begin{right} \small
-            \textbf{Supervisor:}\\
-            Prof. Payal Wadhwa\\
-            Department of CS \& IT\\
-            IIIT Vadodara
-        \end{right}
+    \noindent
+    \begin{minipage}[t]{0.48\textwidth}
+        \raggedright \small
+        \textbf{Team Members:}\\[0.15cm]
+        Mayank Soni\\
+        Naman Kumar\\
+        Krishana Yadav
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        \raggedleft \small
+        \textbf{Supervisor:}\\[0.15cm]
+        Prof. Payal Wadhwa\\
+        Department of CS \& IT\\
+        IIIT Vadodara
     \end{minipage}
 \end{center}
 
@@ -122,13 +122,13 @@ Multiplies all three RGB channels by a common scalar $k$: $R' = kR$, $G' = kG$, 
     \label{fig:step6}
 \end{figure}
 
-\subsection*{Step 7: 2D Image Coordinate Transformations}
-Demonstrates pixel spatial coordinate transformations $X' = AX$, where $A \in \mathbb{R}^{2 \times 2}$ is a transformation matrix acting on coordinate vectors $(x, y)$. Includes presets for Identity, Rotation ($45^\circ$, $90^\circ$), Scaling ($1.5\times$), Shearing ($H_x$), and Reflection ($M_y$) rendered on a Cartesian coordinate grid canvas.
+\subsection*{Step 7: 2D Image Transformation Lab}
+Transform spatial coordinates of pixels directly via matrix-vector multiplication: $P' = AP$ where $A$ is a $2\times2$ transformation matrix. Use the $\mathbf{\Delta/\nabla}$ buttons, Arrow keys, or Presets (Identity, Rotate $45^\circ$, Rotate $90^\circ$, Scale $1.5\times$, Shear X, Reflect Y) to explore linear transformations.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.88\linewidth]{image_8.png}
-    \caption{Step 7: 2D Spatial Coordinate Transformations ($X' = AX$) on Cartesian Grid}
+    \caption{Step 7: 2D Image Transformation Lab — Transform spatial coordinates of pixels directly via matrix-vector multiplication ($P' = AP$ where $A$ is a $2\times2$ transformation matrix)}
     \label{fig:step7}
 \end{figure}
 
