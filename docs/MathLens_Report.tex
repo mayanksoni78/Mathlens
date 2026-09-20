@@ -1,13 +1,13 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
-\usepackage[margin=0.9in]{geometry}
+\usepackage[margin=0.85in]{geometry}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage{booktabs}
 \usepackage{float}
-\usepackage{subcaption}
+\usepackage{caption}
 
 % Color definitions matching MathLens UI
 \definecolor{oliveDark}{HTML}{384A31}
@@ -58,25 +58,79 @@ MathLens is an interactive web-based educational laboratory designed to bridge l
 \section{Work Completed}
 The complete 7-step interactive learning pipeline for MathLens has been engineered and deployed. We built custom HTML5 2D Canvas rendering components, core mathematical engine modules, dynamic matrix element editors with smooth $+1$ frame animations, and a responsive dual-theme user interface (Light Olive Mode with ambient dot texture overlay and Slate-Teal Dark Mode).
 
-% 3. Implemented Features (The 7 Modules)
+% 3. Implemented Features (Assigned Step-by-Step with Large Images)
 \section{Implemented 7-Step Module Pipeline}
 The following 7 interactive steps have been implemented according to the learning progression:
 
-\begin{enumerate}
-    \item \textbf{Step 1: Small Grayscale Image \& Matrix Representation}: Begins with a $4 \times 4$ pixel grayscale image shown side-by-side with its numerical matrix $A$. Demonstrates that a completely black image corresponds to a zero matrix ($A_{i,j} = 0$) and a completely white image corresponds to maximum intensity values ($A_{i,j} = 255$). Values between $0$ and $255$ represent shades of gray, establishing that a digital image is a numerical array.
-    
-    \item \textbf{Step 2: Change Individual Matrix Elements}: Allows learners to edit individual matrix elements via number inputs or sliders. As elements change (e.g., $0 \to 50 \to 100 \to 150 \to 200 \to 255$), the pixel canvas updates instantly. Includes a smooth $+1$ value animation button ($0 \to 255$) operating at 60fps.
-    
-    \item \textbf{Step 3: Connect Matrix Operations with Image Brightness}: Introduces scalar multiplication $A' = kA$. When $k > 1$ (e.g., $A' = 1.5A$), pixel values increase and the image brightens; when $0 < k < 1$ (e.g., $A' = 0.5A$), values decrease and the image darkens. Values exceeding $255$ are automatically clipped to $255$.
-    
-    \item \textbf{Step 4: Move from Grayscale to Colour Images}: Expands grayscale scalars into 3D color vectors $[R, G, B]^T$. Demonstrates pure Red $[255, 0, 0]$, pure Green $[0, 255, 0]$, pure Blue $[0, 0, 255]$, and composite colors such as Purple $[128, 0, 128]$. Learners vary RGB sliders independently to observe live color patch changes.
-    
-    \item \textbf{Step 5: RGB Channel Matrix Decomposition}: Extends color vectors across entire images represented as triple tensors $(R_{\text{matrix}}, G_{\text{matrix}}, B_{\text{matrix}})$. Features a 4-column tab bar selector allowing users to view Red-only, Green-only, Blue-only, or all 3 channel matrices with 16 unique editable cell entries.
-    
-    \item \textbf{Step 6: Apply Scalar Multiplication to Colour Images}: Multiplies all three RGB channels by a common scalar $k$: $R' = kR$, $G' = kG$, and $B' = kB$. Displays the original color image, RGB channel matrices, scalar multiplication slider, and resulting modified color image simultaneously.
-    
-    \item \textbf{Step 7: 2D Image Coordinate Transformations}: Demonstrates pixel spatial coordinate transformations $X' = AX$, where $A \in \mathbb{R}^{2 \times 2}$ is a transformation matrix acting on coordinate vectors $(x, y)$. Includes presets for Identity, Rotation ($45^\circ$, $90^\circ$), Scaling ($1.5\times$), Shearing ($H_x$), and Reflection ($M_y$) rendered on a Cartesian coordinate grid canvas.
-\end{enumerate}
+\subsection*{Step 1: Small Grayscale Image \& Matrix Representation}
+Begins with a $4 \times 4$ pixel grayscale image shown side-by-side with its numerical matrix $A$. Demonstrates that a completely black image corresponds to a zero matrix ($A_{i,j} = 0$) and a completely white image corresponds to maximum intensity values ($A_{i,j} = 255$). Values between $0$ and $255$ represent shades of gray, establishing that a digital image is a numerical array.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.88\linewidth]{image_1.png}
+    \caption{Step 1: Small Grayscale Image ($4 \times 4$ Pixels) and Numerical Matrix View}
+    \label{fig:step1}
+\end{figure}
+
+\subsection*{Step 2: Change Individual Matrix Elements}
+Allows learners to edit individual matrix elements via number inputs or sliders. As elements change (e.g., $0 \to 50 \to 100 \to 150 \to 200 \to 255$), the pixel canvas updates instantly. Includes a smooth $+1$ value animation button ($0 \to 255$) operating at 60fps.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.88\linewidth]{image_3.png}
+    \caption{Step 2: Interactive Element Steppers ($0 \to 255$) and Smooth Frame Animation}
+    \label{fig:step2}
+\end{figure}
+
+\subsection*{Step 3: Connect Matrix Operations with Image Brightness}
+Introduces scalar multiplication $A' = kA$. When $k > 1$ (e.g., $A' = 1.5A$), pixel values increase and the image brightens; when $0 < k < 1$ (e.g., $A' = 0.5A$), values decrease and the image darkens. Values exceeding $255$ are automatically clipped to $255$.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.88\linewidth]{image_4.png}
+    \caption{Step 3: Scalar Matrix Multiplication ($A' = kA$) and Brightness Control}
+    \label{fig:step3}
+\end{figure}
+
+\subsection*{Step 4: Move from Grayscale to Colour Images}
+Expands grayscale scalars into 3D color vectors $[R, G, B]^T$. Demonstrates pure Red $[255, 0, 0]$, pure Green $[0, 255, 0]$, pure Blue $[0, 0, 255]$, and composite colors such as Purple $[128, 0, 128]$. Learners vary RGB sliders independently to observe live color patch changes.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.88\linewidth]{image_5.png}
+    \caption{Step 4: Single RGB Pixel Vector $[R,G,B]^T$ Sliders and Color Patch}
+    \label{fig:step4}
+\end{figure}
+
+\subsection*{Step 5: RGB Channel Matrix Decomposition}
+Extends color vectors across entire images represented as triple tensors $(R_{\text{matrix}}, G_{\text{matrix}}, B_{\text{matrix}})$. Features a 4-column tab bar selector allowing users to view Red-only, Green-only, Blue-only, or all 3 channel matrices with 16 unique editable cell entries.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.88\linewidth]{image_6.png}
+    \caption{Step 5: RGB Channel Tensor Decomposition into $R_{\text{matrix}}$, $G_{\text{matrix}}$, and $B_{\text{matrix}}$}
+    \label{fig:step5}
+\end{figure}
+
+\subsection*{Step 6: Apply Scalar Multiplication to Colour Images}
+Multiplies all three RGB channels by a common scalar $k$: $R' = kR$, $G' = kG$, and $B' = kB$. Displays the original color image, RGB channel matrices, scalar multiplication slider, and resulting modified color image simultaneously.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.88\linewidth]{image_7.png}
+    \caption{Step 6: Scalar Scaling across 3D Color Tensors ($R'=kR, G'=kG, B'=kB$)}
+    \label{fig:step6}
+\end{figure}
+
+\subsection*{Step 7: 2D Image Coordinate Transformations}
+Demonstrates pixel spatial coordinate transformations $X' = AX$, where $A \in \mathbb{R}^{2 \times 2}$ is a transformation matrix acting on coordinate vectors $(x, y)$. Includes presets for Identity, Rotation ($45^\circ$, $90^\circ$), Scaling ($1.5\times$), Shearing ($H_x$), and Reflection ($M_y$) rendered on a Cartesian coordinate grid canvas.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.88\linewidth]{image_8.png}
+    \caption{Step 7: 2D Spatial Coordinate Transformations ($X' = AX$) on Cartesian Grid}
+    \label{fig:step7}
+\end{figure}
 
 % 4. Mathematical Implementation
 \section{Mathematical Implementation}
@@ -107,68 +161,9 @@ The user interface has been crafted with custom aesthetics:
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[b]{0.48\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{image_1.png}
-        \caption{Light Mode Interface (Olive Theme)}
-        \label{fig:light_mode}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.48\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{image_2.png}
-        \caption{Dark Mode Interface (Slate/Teal Theme)}
-        \label{fig:dark_mode}
-    \end{subfigure}
-    \\[0.3cm]
-    \begin{subfigure}[b]{0.48\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{image_3.png}
-        \caption{Cell Editing Module ($0-255$ Steppers \& Animation)}
-        \label{fig:cell_editing}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.48\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{image_4.png}
-        \caption{Scalar Brightness Multiplication ($A' = k A$)}
-        \label{fig:scalar_brightness}
-    \end{subfigure}
-    \caption{MathLens Grayscale, Theme, and Cell Editing Modules}
-    \label{fig:ui_overview}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[b]{0.48\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{image_5.png}
-        \caption{Single RGB Pixel Vector Sliders \& Color Patch}
-        \label{fig:rgb_pixel}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.48\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{image_6.png}
-        \caption{RGB Channel Decomposition Matrix View}
-        \label{fig:rgb_channels}
-    \end{subfigure}
-    \\[0.3cm]
-    \begin{subfigure}[b]{0.48\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{image_7.png}
-        \caption{RGB Scalar Brightness Scaling ($k \cdot [R,G,B]$)}
-        \label{fig:rgb_scaling}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.48\linewidth}
-        \centering
-        \includegraphics[width=\linewidth]{image_8.png}
-        \caption{2D Image Transformation Lab ($X' = AX$)}
-        \label{fig:2d_transforms}
-    \end{subfigure}
-    \caption{MathLens RGB Color Tensor and 2D Transformation Visualizers}
-    \label{fig:rgb_and_transform_modules}
+    \includegraphics[width=0.88\linewidth]{image_2.png}
+    \caption{MathLens Dark Mode User Interface (Slate-Teal Palette)}
+    \label{fig:dark_mode_ui}
 \end{figure}
 
 % 6. Technical Implementation
