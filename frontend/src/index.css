@@ -1,43 +1,32 @@
 :root {
-  /* Curated Olive Green Palette System from User Spec */
-  --olive-1: #E7F5DC;
-  --olive-2: #CFE1B9;
-  --olive-3: #B6C99B;
-  --olive-4: #98A77C;
-  --olive-5: #88976C;
-  --olive-6: #728156;
-  --olive-btn-main: #7E8B52;
-  --olive-btn-dark: #677341;
-  --olive-btn-darker: #525D33;
-
-  /* Dark Theme Palette (Default) */
-  --bg-primary: #0E140C;   /* Deep Dark Olive Black Base */
-  --bg-secondary: #151D12; /* Dark Olive Secondary */
-  --bg-card: #1D2819;      /* Dark Olive Card Background */
-  --bg-card-hover: #253320;/* Dark Olive Hover State */
-  --bg-elevated: #2E3E28;  /* Elevated Olive Container */
+  /* DARK MODE: Blue / Cyan Futuristic Laboratory Accent System */
+  --bg-primary: #0B0F17;   /* Deep Dark Blue-Black Base */
+  --bg-secondary: #121824; /* Secondary Dark Container */
+  --bg-card: #182234;      /* Dark Blue Card Background */
+  --bg-card-hover: #1E2B42;/* Dark Blue Hover State */
+  --bg-elevated: #24344E;  /* Elevated Blue Container */
   
-  --text-primary: #F4F8F0;  /* Off-white with warm olive tint */
-  --text-secondary: #D2DEC6;/* Soft Sage Light Text */
-  --text-muted: #88976C;    /* Shade 5 Muted Olive Text */
+  --text-primary: #F8FAFC;  /* Pure Light Text */
+  --text-secondary: #CBD5E1;/* Soft Blue-Gray Light Text */
+  --text-muted: #64748B;    /* Muted Blue Text */
   
-  /* Primary & Accent Map for Dark Theme */
-  --accent-purple: #B6C99B; /* Shade 3: Primary Bright Olive Accent */
-  --accent-violet: #98A77C; /* Shade 4: Sage Accent */
-  --accent-blue: #88976C;   /* Shade 5: Deep Olive Accent */
-  --accent-cobalt: #728156; /* Shade 6: Dark Olive */
-  --accent-periwinkle: #CFE1B9;/* Shade 2: Light Olive */
-  --accent-cyan: #B6C99B;   /* Shade 3 */
-  --accent-emerald: #98A77C;/* Shade 4 */
-  --accent-mint: #E7F5DC;   /* Shade 1 */
-  --accent-green: #88976C;  /* Shade 5 */
-  --accent-rose: #E06C75;   /* Soft Rose Accent */
-  --accent-gold: #CFE1B9;   /* Warm Soft Olive Gold */
+  /* Primary & Accent Map for Dark Theme (Cyan / Blue System) */
+  --accent-purple: #06B6D4; /* Electric Cyan */
+  --accent-violet: #0D9488; /* Deep Teal Accent */
+  --accent-blue: #0284C7;   /* Sky Blue Accent */
+  --accent-cobalt: #0891B2; /* Deep Cobalt Blue */
+  --accent-periwinkle: #22D3EE;/* Bright Cyan */
+  --accent-cyan: #06B6D4;   /* Electric Cyan */
+  --accent-emerald: #10B981;/* Emerald Green */
+  --accent-mint: #34D399;   /* Mint Green */
+  --accent-green: #10B981;
+  --accent-rose: #F43F5E;   /* Rose Accent */
+  --accent-gold: #F59E0B;   /* Amber Accent */
   
-  --border-color: rgba(182, 201, 155, 0.16);
-  --border-hover: rgba(182, 201, 155, 0.45);
-  --border-violet: rgba(152, 167, 124, 0.4);
-  --border-cyan: rgba(182, 201, 155, 0.35);
+  --border-color: rgba(255, 255, 255, 0.09);
+  --border-hover: rgba(6, 182, 212, 0.45);
+  --border-violet: rgba(13, 148, 136, 0.4);
+  --border-cyan: rgba(6, 182, 212, 0.35);
 
   --font-serif: 'Lora', 'Newsreader', Georgia, serif;
   --font-display: 'Lora', 'Newsreader', Georgia, serif;
@@ -55,35 +44,35 @@
 }
 
 [data-theme="light"] {
-  /* Light Theme Palette */
-  --bg-primary: #F6F9F3;   /* Soft Cream Olive Light Base */
-  --bg-secondary: #E7F5DC; /* Shade 1: Pale Olive Secondary */
+  /* LIGHT MODE: Rich Dark Olive Green Theme from User Spec (#384A31 / #33452B) */
+  --bg-primary: #F5F7F2;   /* Soft Light Base */
+  --bg-secondary: #E9EFE3; /* Light Olive Secondary */
   --bg-card: #FFFFFF;      /* Clean White Card */
-  --bg-card-hover: #EFF7E8;/* Light Olive Hover */
-  --bg-elevated: #E7F5DC;  /* Shade 1 */
+  --bg-card-hover: #EDF2E8;/* Light Olive Hover */
+  --bg-elevated: #E4ECD9;  /* Elevated Container */
   
-  --text-primary: #1F2718;  /* Deep Olive Charcoal Text */
-  --text-secondary: #3B4730;/* Medium Olive Text */
-  --text-muted: #728156;    /* Shade 6 Muted Text */
+  --text-primary: #1C2617;  /* Deep Dark Olive Charcoal Text */
+  --text-secondary: #35442E;/* Deep Olive Secondary Text */
+  --text-muted: #526647;    /* Muted Olive Text */
   
-  /* Primary & Accent Map for Light Theme */
-  --accent-purple: #728156; /* Shade 6: Dark Olive Accent */
-  --accent-teal: #728156;
-  --accent-violet: #88976C; /* Shade 5 */
-  --accent-blue: #98A77C;   /* Shade 4 */
-  --accent-cobalt: #728156;
-  --accent-periwinkle: #88976C;
-  --accent-cyan: #88976C;
-  --accent-emerald: #728156;
-  --accent-mint: #B6C99B;   /* Shade 3 */
-  --accent-green: #728156;
+  /* Primary & Accent Map for Light Theme (Rich Dark Olive System) */
+  --accent-purple: #384A31; /* User Spec Dark Olive Accent */
+  --accent-teal: #384A31;
+  --accent-violet: #455A3B;
+  --accent-blue: #384A31;
+  --accent-cobalt: #293823;
+  --accent-periwinkle: #455A3B;
+  --accent-cyan: #384A31;
+  --accent-emerald: #384A31;
+  --accent-mint: #7E8B52;
+  --accent-green: #384A31;
   --accent-rose: #D9485C;
-  --accent-gold: #88976C;
+  --accent-gold: #526647;
   
-  --border-color: rgba(114, 129, 86, 0.18);
-  --border-hover: rgba(114, 129, 86, 0.45);
-  --border-violet: rgba(136, 151, 108, 0.4);
-  --border-cyan: rgba(152, 167, 124, 0.35);
+  --border-color: rgba(56, 74, 49, 0.16);
+  --border-hover: rgba(56, 74, 49, 0.45);
+  --border-violet: rgba(69, 90, 59, 0.4);
+  --border-cyan: rgba(56, 74, 49, 0.35);
 
   color-scheme: light;
 }
@@ -112,10 +101,11 @@ body::after {
   pointer-events: none;
   z-index: 0;
   filter: blur(100px);
-  opacity: 0.22;
+  opacity: 0.16;
   transition: all 0.5s ease;
 }
 
+/* Dark Mode Orbs: Blue & Cyan */
 body::before {
   width: 50vw;
   height: 50vw;
@@ -123,7 +113,7 @@ body::before {
   max-height: 600px;
   top: -120px;
   left: -120px;
-  background: radial-gradient(circle, #728156 0%, #88976C 75%, transparent 100%);
+  background: radial-gradient(circle, #06B6D4 0%, #0D9488 75%, transparent 100%);
 }
 
 body::after {
@@ -133,21 +123,22 @@ body::after {
   max-height: 700px;
   bottom: -160px;
   right: -160px;
-  background: radial-gradient(circle, #88976C 0%, #B6C99B 75%, transparent 100%);
+  background: radial-gradient(circle, #0D9488 0%, #0284C7 75%, transparent 100%);
 }
 
+/* Light Mode Orbs: Deep Olive Tint */
 [data-theme="light"] body {
-  background-color: #F6F9F3;
+  background-color: #F5F7F2;
   color: var(--text-secondary);
 }
 
 [data-theme="light"] body::before {
-  opacity: 0.3;
+  opacity: 0.25;
   background: radial-gradient(circle, #CFE1B9 0%, #B6C99B 75%, transparent 100%);
 }
 
 [data-theme="light"] body::after {
-  opacity: 0.25;
+  opacity: 0.22;
   background: radial-gradient(circle, #E7F5DC 0%, #CFE1B9 75%, transparent 100%);
 }
 
@@ -216,8 +207,12 @@ code, pre, .font-mono {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(182, 201, 155, 0.35);
+  background: rgba(6, 182, 212, 0.25);
   border-radius: 4px;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: rgba(56, 74, 49, 0.25);
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -240,29 +235,29 @@ code, pre, .font-mono {
 .bg-math-grid {
   background-size: 32px 32px;
   background-image: 
-    linear-gradient(to right, rgba(136, 151, 108, 0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(136, 151, 108, 0.08) 1px, transparent 1px);
+    linear-gradient(to right, rgba(56, 74, 49, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 74, 49, 0.08) 1px, transparent 1px);
 }
 
 .dark .bg-math-grid {
   background-size: 32px 32px;
   background-image: 
-    linear-gradient(to right, rgba(182, 201, 155, 0.12) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(182, 201, 155, 0.12) 1px, transparent 1px);
+    linear-gradient(to right, rgba(6, 182, 212, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(6, 182, 212, 0.1) 1px, transparent 1px);
 }
 
 /* Glow gradient effects */
 .glow-indigo {
-  box-shadow: 0 0 50px -10px rgba(182, 201, 155, 0.25);
+  box-shadow: 0 0 50px -10px rgba(6, 182, 212, 0.25);
 }
 
 .glow-violet {
-  box-shadow: 0 0 60px -15px rgba(136, 151, 108, 0.25);
+  box-shadow: 0 0 60px -15px rgba(13, 148, 136, 0.25);
 }
 
 /* Custom Slider Styles */
 input[type="range"] {
-  accent-color: #88976C;
+  accent-color: var(--accent-purple);
 }
 
 /* Glassmorphism helpers */
@@ -274,10 +269,10 @@ input[type="range"] {
 }
 
 .dark .glass-panel {
-  background: rgba(20, 28, 17, 0.75);
+  background: rgba(18, 24, 36, 0.75);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(182, 201, 155, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* Custom subtle animation */
