@@ -8,6 +8,9 @@
 \usepackage{listings}
 \usepackage{booktabs}
 \usepackage{tikz}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
 \usetikzlibrary{shapes.geometric, arrows.meta, positioning, shadows}
 
 % Define olive and dark mode theme colors matching MathLens UI
@@ -39,25 +42,57 @@
     numberstyle=\tiny\color{gray}
 }
 
-\title{
-    \vspace{-1.5cm}
-    \textbf{\Huge MathLens}\\[0.3cm]
-    \Large Visual \& Interactive Linear Algebra for Digital Images\\[0.2cm]
-    \large \textit{Complete System Documentation and Architecture Report}
-}
-\author{
-    \textbf{Mayank Soni} \\
-    Indian Institute of Information Technology Vadodara (IIITV) \\
-    \texttt{202451104@iiitvadodara.ac.in}
-}
-\date{\today}
-
 \begin{document}
 
-\maketitle
+% ==========================================
+% TITLE PAGE
+% ==========================================
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    
+    {\Huge \textbf{MathLens}}\\[0.4cm]
+    {\Large \textbf{Visual \& Interactive Linear Algebra for Digital Images}}\\[0.2cm]
+    {\large \textit{Design Project Technical Documentation Report}}\\[1.5cm]
+    
+    \rule{\linewidth}{0.5mm}\\[1.2cm]
+    
+    \begin{minipage}{0.48\textwidth}
+        \begin{left} \large
+            \textbf{Project Team Members:}\\[0.3cm]
+            \textbf{Mayank Soni} \\
+            \textit{Roll No: 202451104}\\[0.2cm]
+            \textbf{Naman Kumar} \\
+            \textit{Roll No: 202451101}\\[0.2cm]
+            \textbf{Krishana Yadav} \\
+            \textit{Roll No: 202451102}
+        \end{left}
+    \end{minipage}
+    \begin{minipage}{0.48\textwidth}
+        \begin{right} \large
+            \textbf{Under the Supervision of:}\\[0.3cm]
+            \textbf{Prof. Payal Wadhwa} \\
+            \textit{Faculty Supervisor}\\[0.8cm]
+            \textbf{Department of CS \& IT} \\
+            \textit{IIIT Vadodara}
+        \end{right}
+    \end{minipage}\\[2.5cm]
+    
+    \vfill
+    
+    {\large \textbf{Indian Institute of Information Technology Vadodara (IIITV)}}\\[0.2cm]
+    {\large Academic Session 2025--2026}\\[0.1cm]
+    {\small \today}
+    
+\end{titlepage}
 
+\newpage
+
+% ==========================================
+% ABSTRACT
+% ==========================================
 \begin{abstract}
-\noindent \textbf{MathLens} is an interactive, web-based laboratory designed to demystify linear algebra by bridging abstract matrix mathematics with real-world digital image processing. Digital images are fundamentally stored as two-dimensional numerical arrays (grayscale matrices) or three-dimensional tensor structures (RGB channels). MathLens allows students and educators to manipulate matrix elements, perform scalar operations ($c \cdot A$), decompose color channels, and apply linear coordinate transformations ($X' = A X$) in real time. This report documents the technical architecture, mathematical foundation, UI/UX design system, and component implementation of MathLens as constructed in the current codebase repository.
+\noindent \textbf{MathLens} is an interactive, web-based software laboratory designed to bridge abstract mathematical concepts in linear algebra with concrete spatial visual representations in digital image processing. Digital images are fundamentally formatted as two-dimensional numerical arrays (grayscale intensity matrices) or three-dimensional tensor structures (RGB channels). MathLens enables students, researchers, and educators to manipulate raw matrix elements, execute scalar multiplications ($c \cdot A$), decompose multi-channel color tensors, and perform linear coordinate transformations ($X' = A X$) with instant 60fps canvas visual feedback. This report documents the complete architectural design, mathematical foundations, component system, UI/UX aesthetics, and implementation details of the MathLens project.
 \end{abstract}
 
 \tableofcontents
@@ -68,56 +103,56 @@
 % ==========================================
 
 \subsection{Problem Motivation}
-Linear algebra is a foundational pillar of modern computer science, machine learning, and computer vision. However, students frequently encounter difficulties transitioning from abstract algebraic manipulation (such as matrix multiplication or vector transformations) to spatial intuition. Traditional textbook approaches present matrices purely as static blocks of numbers without immediate visual feedback.
+Linear algebra is a core cornerstone of modern computer science, software engineering, robotics, data science, and artificial intelligence. However, students frequently face cognitive hurdles when transitioning from scalar arithmetic to matrix operations and vector space transformations. Standard textbook presentations show matrices as static rectangular grids of numbers, lacking interactive or visual feedback.
 
-\subsection{Mathematical Visualization as a Learning Tool}
-Digital images provide an ideal, intuitive medium for teaching linear algebra:
+\subsection{Utility of Visual Mathematical Exploration}
+Digital image processing provides a intuitive domain for demonstrating linear algebra:
 \begin{itemize}
-    \item Every pixel is directly backed by an integer intensity value $v \in [0, 255]$.
-    \item Matrix additions and scalar multiplications correspond directly to brightness shifts and contrast adjustments.
-    \item 2D affine transformations ($2 \times 2$ matrices) physically rotate, scale, shear, and reflect pixel coordinates on an image grid.
+    \item \textbf{Direct Mapping}: Every pixel on a monitor corresponds to an array element $A_{i,j} \in [0, 255]$.
+    \item \textbf{Algebraic Operations as Visual Filters}: Matrix addition corresponds to image blending, while scalar multiplication ($c \cdot A$) corresponds to brightness scaling.
+    \item \textbf{Spatial Linear Transformations}: A $2 \times 2$ transformation matrix physically rotates, scales, shears, or reflects pixel coordinate vectors on a 2D Cartesian plane.
 \end{itemize}
-By displaying a digital canvas side-by-side with its mathematical matrix representation, learners obtain instant visual confirmation of every algebraic operation.
 
 \subsection{Project Objective}
-The primary objective of \textbf{MathLens} is to create a responsive, high-performance interactive web laboratory where users can explore linear algebra concepts sequentially—from 8-bit grayscale intensity matrices up to 2D coordinate transformations—with 60fps live canvas rendering.
+The primary goal of the \textbf{MathLens} project—developed by Mayank Soni, Naman Kumar, and Krishana Yadav under the guidance of Prof. Payal Wadhwa—is to engineer an accessible, web-native linear algebra laboratory that provides instant visual feedback, frame-accurate step animations, and intuitive interactive matrix controls.
 
 % ==========================================
 \section{Problem Statement and System Overview}
 % ==========================================
 
 \subsection{Problem Statement}
-To design and build an intuitive, zero-dependency client-side application that visualizes:
-\begin1}
-    \item How $M \times N$ numerical matrices form digital image pixels.
-    \item How scalar multiplication ($c \cdot A$) modifies image contrast and channel intensities.
-    \item How 3D color tensors decomposes into separate Red ($R$), Green ($G$), and Blue ($B$) 2D matrices.
-    \item How $2 \times 2$ transformation matrices transform spatial coordinate vectors $\vec{x} \mapsto A\vec{x}$.
-\end{enumerate}
+To construct an interactive, client-side web application that connects matrix mathematics to digital image processing without requiring server-side compute delays or binary plugin dependencies.
 
 \subsection{System Overview}
-MathLens connects algebraic matrix definitions directly with spatial pixel grids. When a user edits a matrix cell, adjusts a scalar slider, or selects a transformation preset, MathLens evaluates the underlying linear algebra in real-time math engines and updates the HTML5 2D Canvas rendering synchronously.
+MathLens connects algebraic inputs directly to HTML5 Canvas rendering contexts. When a user adjusts an element in an interactive matrix grid, moves a scalar multiplier slider, or selects a coordinate transformation matrix, the system processes the underlying matrix calculations through dedicated mathematical engine modules and renders the result live.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\linewidth]{figures/main_dashboard.png}
+    \caption{MathLens Main Interactive User Interface (Light Olive Theme with Ambient Texture, Header Navigation, Step Tabs, Preset Selector, Pixel Canvas, and Matrix View)}
+    \label{fig:main_dashboard}
+\end{figure}
 
 % ==========================================
 \section{Technology Stack}
 % ==========================================
 
-The MathLens software stack is built using modern, light-weight client-side web technologies verified directly from \texttt{package.json}:
+The MathLens software architecture is constructed using lightweight, web-standard technologies:
 
-\begin{table}[h!]
+\begin{table}[H]
 \centering
-\caption{MathLens Technical Stack Breakdown}
+\caption{MathLens Technical Stack Inventory}
 \begin{tabular}{lll}
 \toprule
-\textbf{Layer} & \textbf{Technology} & \textbf{Version / Specification} \\
+\textbf{Layer} & \textbf{Technology} & \textbf{Version / Role} \\
 \midrule
-Framework & React & v19.2.8 (Hooks, Functional Components) \\
-Build Tool & Vite & v8.3.0 (Fast HMR Client Bundler) \\
-Routing & React Router DOM & v7.18.4 (Client-side Hash/Path Router) \\
-Animations & Framer Motion & v13.4.0 (Spring Pill Transitions) \\
-Icons & Lucide React & v1.47.0 (Vector UI Glyphs) \\
-Styling & CSS Variables \& Tailwind CSS & v4.3.3 (Adaptive Olive/Cyan Themes) \\
-Canvas API & HTML5 2D Context & Native High-DPI Canvas Rendering \\
+Frontend Framework & React & v19.2.8 (Hooks \& State Management) \\
+Build Platform & Vite & v8.3.0 (Fast HMR \& Production Bundler) \\
+Routing Engine & React Router DOM & v7.18.4 (Client-Side Path Routing) \\
+Animations & Framer Motion & v13.4.0 (Spring Pill Switches \& Layouts) \\
+Vector Icons & Lucide React & v1.47.0 (Clean SVG Interface Glyphs) \\
+Styling System & CSS Variables / Tailwind CSS & v4.3.3 (Dual Olive/Cyan Design System) \\
+Rendering Engine & HTML5 2D Canvas API & Native Pixel \& Coordinate Grid Drawing \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -126,12 +161,12 @@ Canvas API & HTML5 2D Context & Native High-DPI Canvas Rendering \\
 \section{System Architecture}
 % ==========================================
 
-\subsection{Architectural Dataflow}
-MathLens strictly decouples user inputs from visualization rendering through a uni-directional state pipeline:
+\subsection{Dataflow Architecture}
+The system enforces a uni-directional architecture isolating input handlers, mathematical engines, component states, and canvas draw calls:
 
-\begin{figure}[h!]
+\begin{figure}[H]
 \centering
-\begin{tikzpicture}[node distance=1.8cm, auto, >=Stealth]
+\begin{tikzpicture}[node distance=1.6cm, auto, >=Stealth]
     \node [draw, fill=oliveLight, rounded corners, width=2.8cm, text align=center] (input) {User Interaction \\ \small (Cell Edit / Slider / Preset)};
     \node [draw, fill=codeBg, rounded corners, right=of input, width=3.2cm, text align=center] (engine) {Math Engine \\ \small (\texttt{mathEngine.js}, \texttt{transformEngine.js})};
     \node [draw, fill=codeBg, rounded corners, right=of engine, width=3.0cm, text align=center] (state) {React State \\ \small (Matrix Grid / Tensor Array)};
@@ -141,118 +176,107 @@ MathLens strictly decouples user inputs from visualization rendering through a u
     \draw[->, thick, oliveDark] (engine) -- (state);
     \draw[->, thick, oliveDark] (state) -- (render);
 \end{tikzpicture}
-\caption{Uni-directional Dataflow Architecture of MathLens}
+\caption{Uni-directional Dataflow Pipeline of MathLens}
+\label{fig:dataflow}
 \end{figure}
 
 % ==========================================
 \section{Implemented Learning Modules}
 % ==========================================
 
-The current codebase features a 7-step guided learning progression:
+MathLens provides seven core interactive learning modules:
 
-\subsection{Step 1: From Pixels to Matrices (\texttt{Step1Grayscale.jsx})}
-\begin{itemize}
-    \item \textbf{Purpose}: Demonstrates 8-bit grayscale pixel representation where intensity $v \in [0, 255]$.
-    \item \textbf{User Interaction}: Switch between matrix presets (Black, White, Checkerboard, Gradient).
-    \item \textbf{Visualization}: Linked $4 \times 4$ interactive pixel canvas and matrix grid.
-\end{itemize}
+\subsection{Module 1: From Pixels to Matrices (\texttt{Step1Grayscale.jsx})}
+Demonstrates 8-bit grayscale pixel representation where each array element represents intensity $v \in [0, 255]$. Users can select matrix presets (Black, White, Checkerboard, Gradient).
 
-\subsection{Step 2: Edit Individual Matrix Elements (\texttt{Step2CellEditing.jsx})}
-\begin{itemize}
-    \item \textbf{Purpose}: Introduces direct element manipulation and frame-by-frame value transitions.
-    \item \textbf{User Interaction}: Edit any cell $A_{i,j}$ directly or trigger the smooth $+1$ frame animation ($0 \to 255$).
-    \item \textbf{Visualization}: Synchronous canvas update with floating pixel value tooltips.
-\end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\linewidth]{figures/matrix_presets.png}
+    \caption{Interactive Matrix Preset Selection Toolbar}
+    \label{fig:matrix_presets}
+\end{figure}
 
-\subsection{Step 3: Scalar Brightness Operations (\texttt{Step3ScalarBrightness.jsx})}
-\begin{itemize}
-    \item \textbf{Purpose}: Demonstrates scalar multiplication $B = c \cdot A$.
-    \item \textbf{User Interaction}: Adjust scalar multiplier slider $c \in [0.0, 2.0]$.
-    \item \textbf{Visualization}: Live scalar equation display $c \cdot A = B$ with updated image brightness.
-\end{itemize}
+\subsection{Module 2: Edit Individual Matrix Elements (\texttt{Step2CellEditing.jsx})}
+Allows direct element editing and features a smooth $+1$ frame-by-frame value animation ($0 \to 255$) using 60fps \texttt{requestAnimationFrame}.
 
-\subsection{Step 4: Single RGB Pixel Vector (\texttt{Step4SingleRGBPixel.jsx})}
-\begin{itemize}
-    \item \textbf{Purpose}: Introduces 3-element color vectors $\vec{v} = [R, G, B]^T$.
-    \item \textbf{User Interaction}: Adjust R, G, B sliders ($0-255$) or choose color presets (Red, Green, Blue, Yellow).
-    \item \textbf{Visualization}: Color swatch preview with expanded vector bracket representation.
-\end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\linewidth]{figures/play_animation.png}
+    \caption{Smooth Value Animation Action Button}
+    \label{fig:play_animation}
+\end{figure}
 
-\subsection{Step 5: RGB Channel Matrix Decomposition (\texttt{Step5RGBMatrices.jsx})}
-\begin{itemize}
-    \item \textbf{Purpose}: Decomposes a full RGB color image into three distinct 2D channel matrices ($R_{\text{matrix}}$, $G_{\text{matrix}}$, $B_{\text{matrix}}$).
-    \item \textbf{User Interaction}: Select channels ($R$, $G$, $B$, or All 3) and edit any of the 16 unique cell values.
-    \item \textbf{Visualization}: Color-coded channel grid ($R$: Red, $G$: Green, $B$: Blue) with live reconstructed RGB canvas.
-\end{itemize}
+\subsection{Module 3: Scalar Brightness Operations (\texttt{Step3ScalarBrightness.jsx})}
+Demonstrates scalar matrix multiplication $B = c \cdot A$. Users adjust a scalar multiplier slider $c \in [0.0, 2.0]$.
 
-\subsection{Step 6: RGB Channel Scalar Operations (\texttt{Step6RGBScalarMult.jsx})}
-\begin{itemize}
-    \item \textbf{Purpose}: Demonstrates uniform scalar scaling on 3D color tensors: $c \cdot [R, G, B]$.
-    \item \textbf{User Interaction}: Modify color scalar factor $c \in [0.0, 2.0]$.
-    \item \textbf{Visualization}: Individual R, G, B scaled matrices alongside total image brightness scaling.
-\end{itemize}
+\subsection{Module 4: Single RGB Pixel Vector (\texttt{Step4SingleRGBPixel.jsx})}
+Introduces 3-element color vectors $\vec{v} = [R, G, B]^T$ with interactive RGB sliders.
 
-\subsection{Step 7: 2D Matrix Coordinate Transformations (\texttt{Step7ImageTransforms.jsx})}
-\begin{itemize}
-    \item \textbf{Purpose}: Explores $2 \times 2$ linear spatial transformations $\vec{x}' = A \vec{x}$.
-    \item \textbf{User Interaction}: Select presets (Identity, Rotate $45^\circ$, Rotate $90^\circ$, Scale $2\times$, Shear X, Reflect X) or manually adjust matrix elements $a, b, c, d$.
-    \item \textbf{Visualization}: 2D Cartesian coordinate grid displaying original and transformed vector points.
-\end{itemize}
+\subsection{Module 5: RGB Channel Matrix Decomposition (\texttt{Step5RGBMatrices.jsx})}
+Decomposes a color image into three 2D matrices ($R_{\text{matrix}}$, $G_{\text{matrix}}$, $B_{\text{matrix}}$) with 16 unique non-zero channel values and live editable cell inputs.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.88\linewidth]{figures/channel_decomposition.png}
+    \caption{RGB Channel Decomposition Matrix View and Live Image Canvas}
+    \label{fig:channel_decomposition}
+\end{figure}
+
+\subsection{Module 6: RGB Channel Scalar Operations (\texttt{Step6RGBScalarMult.jsx})}
+Demonstrates scalar scaling across 3D color tensors: $c \cdot [R, G, B]$.
+
+\subsection{Module 7: 2D Matrix Coordinate Transformations (\texttt{Step7ImageTransforms.jsx})}
+Explores $2 \times 2$ linear spatial transformations $\vec{x}' = A \vec{x}$ (Rotation, Scaling, Shearing, Reflection).
 
 % ==========================================
 \section{Implemented Mathematical Formulations}
 % ==========================================
 
 \subsection{Grayscale Pixel Matrix Representation}
-An $M \times N$ grayscale image is defined as a matrix $A \in \mathbb{R}^{M \times N}$:
+An $M \times N$ grayscale image is represented as a matrix $A \in \mathbb{R}^{M \times N}$:
 \begin{equation}
 A = \begin{bmatrix}
 a_{1,1} & a_{1,2} & \dots & a_{1,N} \\
 a_{2,1} & a_{2,2} & \dots & a_{2,N} \\
 \vdots & \vdots & \ddots & \vdots \\
 a_{M,1} & a_{M,2} & \dots & a_{M,N}
-\end{bmatrix}, \quad \text{where } a_{i,j} \in [0, 255] \subset \mathbb{Z}
+\end{bmatrix}, \quad a_{i,j} \in [0, 255] \subset \mathbb{Z}
 \end{equation}
 
 \subsection{Scalar Matrix Multiplication}
-Given a scalar constant $c \in \mathbb{R}_{\ge 0}$ and base matrix $A$, the brightened matrix $B$ is computed as:
+Given a scalar constant $c \ge 0$, the multiplied matrix $B = c \cdot A$ is defined element-wise by:
 \begin{equation}
-B = c \cdot A = \begin{bmatrix}
-\text{clamp}(c \cdot a_{1,1}) & \dots & \text{clamp}(c \cdot a_{1,N}) \\
-\vdots & \ddots & \vdots \\
-\text{clamp}(c \cdot a_{M,1}) & \dots & \text{clamp}(c \cdot a_{M,N})
-\end{bmatrix}
+B_{i,j} = \text{clamp}(c \cdot a_{i,j}), \quad \text{where } \text{clamp}(x) = \min(255, \max(0, \lfloor x \rceil))
 \end{equation}
-where $\text{clamp}(x) = \min(255, \max(0, \lfloor x \rceil))$.
 
 \subsection{RGB Tensor Channel Decomposition}
-A color image $I$ is represented as a 3D tensor $I \in \mathbb{R}^{M \times N \times 3}$:
+An RGB image is a 3D tensor $I \in \mathbb{R}^{M \times N \times 3}$:
 \begin{equation}
-I(i, j) = \begin{bmatrix} R_{i,j} \\ G_{i,j} \\ B_{i,j} \end{bmatrix}, \quad R_{i,j}, G_{i,j}, B_{i,j} \in [0, 255]
+I(i, j) = \begin{bmatrix} R_{i,j} \\ G_{i,j} \\ B_{i,j} \end{bmatrix}
 \end{equation}
 
-\subsection{2D Affine Linear Transformations}
-For any point vector $\vec{x} = \begin{bmatrix} x \\ y \end{bmatrix}$, a $2 \times 2$ transformation matrix $A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$ maps coordinates via:
+\subsection{2D Linear Coordinate Transformations}
+For coordinate vector $\vec{x} = \begin{bmatrix} x \\ y \end{bmatrix}$ and transformation matrix $A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}$:
 \begin{equation}
 \vec{x}' = A \vec{x} = \begin{bmatrix} a & b \\ c & d \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} ax + by \\ cx + dy \end{bmatrix}
 \end{equation}
 
-\subsubsection{Rotation Matrix}
+\subsubsection{Rotation Matrix $R(\theta)$}
 \begin{equation}
 R(\theta) = \begin{bmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{bmatrix}
 \end{equation}
 
-\subsubsection{Scaling Matrix}
+\subsubsection{Scaling Matrix $S(s_x, s_y)$}
 \begin{equation}
 S(s_x, s_y) = \begin{bmatrix} s_x & 0 \\ 0 & s_y \end{bmatrix}
 \end{equation}
 
-\subsubsection{Shearing Matrix}
+\subsubsection{Shearing Matrix $H(k_x)$}
 \begin{equation}
 H(k_x) = \begin{bmatrix} 1 & k_x \\ 0 & 1 \end{bmatrix}
 \end{equation}
 
-\subsubsection{Reflection Matrix (X-Axis)}
+\subsubsection{Reflection Matrix $M_x$}
 \begin{equation}
 M_x = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}
 \end{equation}
@@ -263,37 +287,35 @@ M_x = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}
 
 \subsection{Mathematical Engines}
 \begin{itemize}
-    \item \texttt{src/core/mathEngine.js}: Exports utilities for matrix creation, scalar multiplication, clamping, and matrix validation.
-    \item \texttt{src/core/transformEngine.js}: Implements $2 \times 2$ matrix-vector multiplication $\vec{x}' = A\vec{x}$ and transformation preset generators.
+    \item \texttt{src/core/mathEngine.js}: Contains core operations for matrix allocation, clamping, and scalar multiplication.
+    \item \texttt{src/core/transformEngine.js}: Performs $2 \times 2$ vector transformations and preset generation.
 \end{itemize}
 
 \subsection{Visualization Components}
 \begin{itemize}
-    \item \texttt{PixelCanvas.jsx}: Native HTML5 2D Canvas renderer with device-pixel-ratio scaling, crisp grid lines, and cell hover detection.
-    \item \texttt{MatrixGrid.jsx}: Interactive matrix grid rendering bracketed inputs for live value editing.
-    \item \texttt{RGBExplodedView.jsx}: 4-column tabbed channel matrix display supporting editable $R, G, B$ inputs.
-    \item \texttt{CoordinateTransformCanvas.jsx}: HTML5 Canvas displaying Cartesian axis grids, basis vectors, and transformed vector points.
+    \item \texttt{PixelCanvas.jsx}: Draws pixel arrays onto HTML5 Canvas with device-pixel-ratio scaling.
+    \item \texttt{MatrixGrid.jsx}: Renders editable matrix brackets and input elements.
+    \item \texttt{RGBExplodedView.jsx}: 4-column tabbed channel decomposition view with live cell editing.
+    \item \texttt{CoordinateTransformCanvas.jsx}: Draws Cartesian axes, grid lines, and transformed vectors.
 \end{itemize}
 
 % ==========================================
 \section{UI/UX Design System}
 % ==========================================
 
-MathLens implements a custom dual-theme design system:
+MathLens features a dual-theme system:
 \begin{itemize}
-    \item \textbf{Dark Mode}: High-tech dark slate background (\texttt{\#0B0F17}) with electric cyan/teal accents (\texttt{\#0F766E} / \texttt{\#0369A1}).
-    \item \textbf{Light Mode}: Cream alabaster background (\texttt{\#F3F6F0}) with smooth sage-olive accents (\texttt{\#5C7249} / \texttt{\#465935}) and ambient dot-mesh texture overlays.
-    \item \textbf{Typography}: Google Fonts \textit{Lora} (editorial serif headings), \textit{Plus Jakarta Sans} (body text), and \textit{JetBrains Mono} (matrix numerals).
+    \item \textbf{Dark Mode}: Slate background (\texttt{\#0B0F17}) with muted steel-teal/blue accents (\texttt{\#0F766E} / \texttt{\#0369A1}).
+    \item \textbf{Light Mode}: Soft cream background (\texttt{\#F3F6F0}) with smooth olive accents (\texttt{\#5C7249} / \texttt{\#465935}) and ambient dot-mesh texture overlays.
+    \item \textbf{Typography}: Google Fonts \textit{Lora} (serif headings), \textit{Plus Jakarta Sans} (body), and \textit{JetBrains Mono} (matrix numbers).
 \end{itemize}
 
 % ==========================================
 \section{Testing and Validation}
 % ==========================================
-
-The application logic has been validated through rigorous build-time compilation:
 \begin{itemize}
-    \item \textbf{Production Bundling}: Verified using \texttt{npm run build} (Vite v8.3.0), building in $< 1.2$s with zero warnings or errors.
-    \item \textbf{Rendering Performance}: 60fps frame rates achieved during the $+1$ smooth value animation using \texttt{requestAnimationFrame}.
+    \item \textbf{Build Validation}: Verified using \texttt{npm run build} (Vite v8.3.0), compiling cleanly in $< 1.1$s with 0 errors.
+    \item \textbf{Animation Performance}: 60fps render loops maintained during smooth $+1$ value animation steps.
 \end{itemize}
 
 % ==========================================
@@ -302,20 +324,20 @@ The application logic has been validated through rigorous build-time compilation
 
 \subsection{Current Limitations}
 \begin{itemize}
-    \item Grid dimensions are currently optimized for $4 \times 4$ matrices for pedagogical clarity.
-    \item Transformations are limited to 2D affine matrices.
+    \item Matrix size is currently standardized to $4 \times 4$ for optimal classroom display.
+    \item Transformations are limited to 2D planar matrices.
 \end{itemize}
 
 \subsection{Future Scope}
 \begin{itemize}
-    \item Support for arbitrary $N \times N$ uploaded user images.
-    \item 3D tensor visualization for convolutional neural network (CNN) feature maps.
-    \item Eigenvalue ($\lambda$) and Eigenvector ($\vec{v}$) visual decomposition ($A \vec{v} = \lambda \vec{v}$).
+    \item Arbitrary user image upload and real-time matrix conversion.
+    \item 3D tensor visualizations for deep learning feature maps.
+    \item Interactive Eigenvalue ($\lambda$) and Eigenvector ($\vec{v}$) visual decomposition ($A \vec{v} = \lambda \vec{v}$).
 \end{itemize}
 
 % ==========================================
 \section{Conclusion}
 % ==========================================
-MathLens successfully bridges abstract matrix algebra and intuitive visual feedback. By transforming complex formulas into responsive, color-coded, interactive matrix laboratory components, it provides an engaging pedagogical tool for students mastering linear algebra in digital image processing.
+MathLens successfully connects linear algebra formulas to interactive image processing visualizations. Built by Mayank Soni, Naman Kumar, and Krishana Yadav under Prof. Payal Wadhwa, the project provides a responsive, intuitive, and mathematically rigorous educational tool.
 
 \end{document}
