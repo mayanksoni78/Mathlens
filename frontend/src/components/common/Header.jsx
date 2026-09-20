@@ -6,13 +6,10 @@ export default function Header({ currentLevel, onSelectLevel, onOpenLevelModal, 
   return (
     <header className="header-bar">
       <div className="brand-section">
-        <div>
-          <h1 className="brand-title">MathLens</h1>
-          <div className="brand-subtitle">Visual & Interactive Linear Algebra</div>
-        </div>
+        <h1 className="brand-title">MathLens</h1>
       </div>
       
-      <div className="header-controls" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+      <div className="header-controls">
         {/* Sliding Pill Control for Basic & Advanced */}
         <div className="track-slider-container">
           <button
@@ -45,8 +42,9 @@ export default function Header({ currentLevel, onSelectLevel, onOpenLevelModal, 
                 transition={{ type: 'spring', stiffness: 450, damping: 35 }}
               />
             )}
-            <span className="track-slider-text flex items-center gap-1">
-              <Sparkles size={12} className="inline opacity-80" /> Advanced Math
+            <span className="track-slider-text flex items-center gap-1.5">
+              <Sparkles size={13} className="inline opacity-90" />
+              <span>Advanced Math</span>
             </span>
           </button>
         </div>
@@ -55,15 +53,15 @@ export default function Header({ currentLevel, onSelectLevel, onOpenLevelModal, 
         <motion.button
           className="theme-toggle-btn"
           onClick={onToggleTheme}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          whileHover={{ scale: 1.06 }}
+          whileTap={{ scale: 0.94 }}
           title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
           aria-label="Toggle theme"
         >
           {theme === 'dark' ? (
-            <Sun size={18} className="theme-icon sun-icon" />
+            <Sun size={17} className="theme-icon sun-icon" />
           ) : (
-            <Moon size={18} className="theme-icon moon-icon" />
+            <Moon size={17} className="theme-icon moon-icon" />
           )}
         </motion.button>
       </div>
