@@ -26,8 +26,8 @@ export default function Step4SingleRGBPixel() {
         </p>
       </div>
 
-      <div className="top-control-card" style={{ padding: '1rem 1.5rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
+      <div className="top-control-card">
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem' }}>
           <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
             Preset RGB Vectors:
           </span>
@@ -81,8 +81,9 @@ export default function Step4SingleRGBPixel() {
             <div
               className="color-swatch-square"
               style={{
-                width: '220px',
-                height: '220px',
+                width: '100%',
+                maxWidth: '220px',
+                aspectRatio: '1 / 1',
                 borderRadius: '16px',
                 backgroundColor: `rgb(${r}, ${g}, ${b})`,
                 border: '2px solid var(--border-color)',

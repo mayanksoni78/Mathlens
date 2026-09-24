@@ -76,7 +76,16 @@ export const CURRICULUM = {
       summary: 'Transform 2D image coordinates using transformation matrices: X\' = AX (scaling, rotation, shearing).',
       concepts: ['Linear Transformations', 'Coordinate Mapping X\'=AX', 'Rotation & Shear Matrices'],
       basicHint: 'Moving pixels around according to a math formula allows you to rotate, stretch, and tilt images!',
-      advancedFormula: "X' = A X, \\quad \\begin{bmatrix} x' \\\\ y' \\end{bmatrix} = \\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix} \\begin{bmatrix} x \\\\ y \\end{bmatrix}"
+    },
+    {
+      id: 8,
+      slug: 'matrix-arithmetic-geometry',
+      title: 'Step 8: Matrix Applications (Arithmetic, Inversion, Determinants & Inverse)',
+      shortTitle: 'Matrix Applications',
+      summary: 'Explore 8.1 Matrix Addition (Image Blending), 8.2 Background Removal, 8.3 Change Detection, 8.4 Image Inversion (X-ray Effect: A′ = 255 − A), 8.5 Determinant: Stretch, Shrink, Flip or Collapse (det(A) = ad − bc), 8.6 Matrix Inverse: Undo Transformation (x = A⁻¹x′), and 8.7 Matrix Inverse: Zoom In and Zoom Out (S = [k 0; 0 k], S⁻¹ = [1/k 0; 0 1/k]).',
+      concepts: ['Alpha Blending C = αA + (1-α)B', 'Background Removal D = |I - B|', 'Change Detection D = |A - B|', 'Image Inversion A′ = 255 − A', 'Determinant det(A) = ad - bc', 'Matrix Inverse A⁻¹', 'Zoom Scaling Matrix S = [k 0; 0 k]', 'Inverse Zoom S⁻¹ = [1/k 0; 0 1/k]', 'Identity S⁻¹S = I'],
+      basicHint: 'Zoom into an image using scaling matrix S=[k 0; 0 k], then apply inverse scaling matrix S⁻¹=[1/k 0; 0 1/k] to restore original scale!',
+      advancedFormula: "S = \\begin{bmatrix} k & 0 \\\\ 0 & k \\end{bmatrix}, \\quad S^{-1} = \\begin{bmatrix} 1/k & 0 \\\\ 0 & 1/k \\end{bmatrix}, \\quad S^{-1}S = I"
     }
   ],
   upcomingModules: [

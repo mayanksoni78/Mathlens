@@ -60,6 +60,52 @@ export function addMatrices(A, B, clip = true) {
 }
 
 /**
+ * Subtracts matrix B from matrix A element-wise: C = A - B
+ * @param {number[][]} A 
+ * @param {number[][]} B 
+ * @param {boolean} clip 
+ * @returns {number[][]}
+ */
+export function subtractMatrices(A, B, clip = true) {
+  return A.map((row, r) =>
+    row.map((val, c) => {
+      const diff = val - (B[r]?.[c] ?? 0);
+      return clip ? clamp(diff) : diff;
+    })
+  );
+}
+
+/**
+ * Computes absolute difference element-wise: C = |A - B|
+ * Used for change detection, motion detection, and delta analysis.
+ * @param {number[][]} A 
+ * @param {number[][]} B 
+ * @returns {number[][]}
+ */
+export function absDifferenceMatrices(A, B) {
+  return A.map((row, r) =>
+    row.map((val, c) => {
+      const diff = Math.abs(val - (B[r]?.[c] ?? 0));
+      return clamp(diff);
+    })
+  );
+}
+
+/**
+ * Creates a binary or thresholded matrix: val > threshold ? highValue : lowValue
+ * @param {number[][]} matrix
+ * @param {number} threshold
+ * @param {number} highValue
+ * @param {number} lowValue
+ * @returns {number[][]}
+ */
+export function thresholdMatrix(matrix, threshold, highValue = 255, lowValue = 0) {
+  return matrix.map(row =>
+    row.map(val => (val > threshold ? highValue : lowValue))
+  );
+}
+
+/**
  * Clones a 2D matrix to prevent unintended mutations.
  * @param {number[][]} matrix 
  * @returns {number[][]}

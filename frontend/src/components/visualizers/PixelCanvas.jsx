@@ -121,7 +121,7 @@ export default function PixelCanvas({
   };
 
   return (
-    <div className="canvas-card" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '1.5rem' }}>
+    <div className="canvas-card" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
       <div style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%' }}>
         <div className="canvas-header" style={{ marginBottom: '1rem' }}>
           <h3>{title}</h3>

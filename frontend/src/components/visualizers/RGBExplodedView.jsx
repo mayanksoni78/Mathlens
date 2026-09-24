@@ -95,9 +95,9 @@ export default function RGBExplodedView({
   );
 
   return (
-    <div className="matrix-grid-card" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', padding: '1.5rem' }}>
+    <div className="matrix-grid-card" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
       <div style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%' }}>
-        <div className="card-title" style={{ marginBottom: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div className="card-title" style={{ marginBottom: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.35rem' }}>
           <span>Channel Decomposition</span>
           <span style={{ fontSize: '0.82rem', color: 'var(--text-muted)', fontWeight: 500 }}>Click cell to edit value</span>
         </div>
